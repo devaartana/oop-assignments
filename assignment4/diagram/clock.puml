@@ -1,0 +1,35 @@
+@startuml
+
+package main {
+    class ClockDisplay {
+        - NumberDisplay hours
+        - NumberDisplay minutes
+        - NumberDisplay seconds
+        - String currTimeString
+        + ClockDisplay()
+        + void setTime(int hour, int minute, int second)
+        + String getTime()
+        + void minIncrement()
+        - void setTimeString()
+    }
+
+    class NumberDisplay {
+        - int currValue
+        - int maxValue
+        + NumberDisplay(int max)
+        + void setValue(int newValue)
+        + int getValue()
+        + String getDisplayValue()
+        + void increment()
+    }
+
+    class ClockDemo {
+        + static void main(String[] args)
+    }
+
+    ClockDisplay --> NumberDisplay : uses
+    ClockDisplay --> NumberDisplay : uses
+    ClockDisplay --> NumberDisplay : uses
+}
+
+@enduml
