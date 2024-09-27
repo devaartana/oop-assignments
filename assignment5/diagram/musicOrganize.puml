@@ -1,0 +1,50 @@
+@startuml MusicOrganizer
+class MusicOrganizer {
+  - ArrayList<Track> tracks
+  - MusicPlayer player
+  - TrackReader reader
+  --
+  + MusicOrganizer()
+  + listAllTracks()
+  + playTrack(index: int)
+  - readLibrary(folder: String)
+  + getNumberOfTracks(): int
+  - indexValid(index: int): boolean
+}
+
+class Track {
+  - String filename
+  - String artist
+  - String title
+  --
+  + Track(filename: String, artist: String, title: String)
+  + getFilename(): String
+  + getArtist(): String
+  + getTitle(): String
+  + getDetails(): String
+}
+
+class MusicPlayer {
+  - boolean isPlaying
+  --
+  + MusicPlayer()
+  + startPlaying(filename: String)
+  + stopPlaying()
+}
+
+class TrackReader {
+  --
+  + readTracks(folder: String): ArrayList<Track>
+}
+
+class Main {
+  --
+  + main(args: String[])
+}
+
+MusicOrganizer --> Track : uses
+MusicOrganizer --> MusicPlayer : uses
+MusicOrganizer --> TrackReader :uses
+Main --> MusicOrganizer :uses
+
+@enduml
