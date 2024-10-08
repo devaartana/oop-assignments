@@ -1,0 +1,23 @@
+@startuml Tech Support System
+class SupportSystem {
+  - InputReader reader
+  - Responder responder
+  + SupportSystem()
+  + start()
+}
+
+class InputReader {
+  - Scanner scanner
+  + InputReader()
+  + getInput(): String
+}
+
+class Responder {
+  - Map<String, String> responses
+  + Responder()
+  + generateResponse(input: String): String
+}
+
+SupportSystem --> InputReader : uses
+SupportSystem --> Responder : uses
+@enduml
