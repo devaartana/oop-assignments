@@ -1,0 +1,58 @@
+@startuml zul
+class Command {
+  - String commandWord
+  - String secondWord
+
+  + Command(String firstWord, String secondWord)
+  + String getCommandWord()
+  + String getSecondWord()
+  + boolean isUnknown()
+  + boolean hasSecondWord()
+}
+
+class CommandWords {
+  - static final String validCommands[]
+
+  + boolean isCommand(String aString)
+}
+
+class Room {
+  + String description
+  + Room northExit
+  + Room eastExit
+  + Room southExit
+  + Room westExit
+
+  + Room(String description)
+  + void setExits(Room north, Room south, Room east, Room west)
+  + String getDescription()
+}
+
+class Parser {
+  - CommandWords commands
+
+  + Parser()
+  + Command getCommand()
+}
+
+
+class Game {
+  - Parser parser
+  - Room currentRoom
+
+  + Game()
+  - void createRooms()
+  + void play()
+  - void printWelcome()
+  - boolean processCommand(Command command)
+  - void printHelp()
+  - void goRoom(Command command)
+  - boolean quit(Command command)
+}
+
+Game --> Parser : uses
+Game --> Room : contains
+Parser --> Command : generates
+Parser --> CommandWords : uses
+Room --> Room : exits
+@enduml
