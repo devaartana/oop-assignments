@@ -1,0 +1,53 @@
+@startuml Network App
+ 
+class Network {
+  - users: List<User>
+  - posts: List<Post>
+  + addUser(username: String): User
+  + addPost(post: Post): void
+  + showAllPost(): void
+}
+
+class User {
+  - username: String
+  - posts: List<Post>
+  + getUsername(): String
+  + addMessagePost(content: String): void
+  + addPhotoPost(filename: String, caption: String): void
+  + likePost(): void
+  + getPosts(): List<Post>
+}
+
+abstract class Post {
+  - author: User
+  - timestamp: LocalDateTime
+  - likes: List<User>
+  + getAuthor(): User
+  + getLikes(): List<User>
+  + addLike(user: User): void
+  + getLikeCount(): int
+  + getTimestamp(): LocalDateTime
+  + showPost(): void
+}
+
+class MessagePost {
+  - content: String
+  + getText(): String
+  + showPost(): void
+}
+
+class PhotoPost {
+  - photoUrl: String
+  - caption: String
+  + getFile(): String
+  + getCaption: String
+  + showPost(): void
+}
+
+Network "1" --> "*" User
+Network "1" --> "*" Post
+User "1" --> "*" Post
+Post <|-- MessagePost
+Post <|-- PhotoPost
+
+@enduml
