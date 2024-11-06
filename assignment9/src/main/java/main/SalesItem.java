@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public class SalesItem {
   private String name;
-  private int price; 
+  private int price;
   private ArrayList<Comment> comments;
 
   public SalesItem(String name, int price) {
@@ -70,6 +70,10 @@ public class SalesItem {
   }
 
   public Comment findMostHelpfulComment() {
+    if(comments.size() == 0) {
+      return null;
+    }
+    
     Iterator<Comment> it = comments.iterator();
     Comment best = it.next();
     while (it.hasNext()) {
@@ -98,7 +102,7 @@ public class SalesItem {
     int dollars = price / 100;
     int cents = price - (dollars * 100);
     if (cents <= 9) {
-      return "$" + dollars + ".0" + cents; 
+      return "$" + dollars + ".0" + cents;
     } else {
       return "$" + dollars + "." + cents;
     }

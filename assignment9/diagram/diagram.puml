@@ -1,0 +1,58 @@
+@startuml SalesItem
+
+class SalesItem {
+  - name: String
+  - price: int
+  - comments: ArrayList<Comment>
+
+  + SalesItem(name: String, price: int)
+  + getName(): String
+  + getPrice(): int
+  + getNumberOfComments(): int
+  + addComment(author: String, text: String, rating: int): boolean
+  + removeComment(index: int): void
+  + upvoteComment(index: int): void
+  + downvoteComment(index: int): void
+  + showInfo(): void
+  + findMostHelpfulComment(): Comment
+  - ratingInvalid(rating: int): boolean
+  - findCommentByAuthor(author: String): Comment
+  - priceString(price: int): String
+}
+
+class Comment {
+  - author: String
+  - text: String
+  - rating: int
+  - voteCount: int
+
+  + Comment(author: String, text: String, rating: int)
+  + getAuthor(): String
+  + getText(): String
+  + getRating(): int
+  + getVoteCount(): int
+  + upvote(): void
+  + downvote(): void
+  + getFullDetails(): String
+}
+
+class SalesItemTest {
+  + setUp() : void
+  + testAddComment(): void
+  + testAddCommentWithBoundaryRatingZero(): void
+  + testAddCommentWithBoundaryRatingFive(): void 
+  + testAddDuplicateComment(): void
+  + testRemoveComment(): void
+  + testFindMostFelpfulComment: void
+  + testFindMostHelpfulCommentWithNoVotes(): void
+  + testFindMostHelpfulCommentWithEmptyComments(): void
+  + testUpVoteComment(): void 
+  + testDownVoteComment(): void
+  + testInvalidRating(): void
+}
+
+SalesItem --> Comment
+SalesItemTest --> SalesItem : tests
+SalesItemTest --> Comment : tests
+
+@enduml
