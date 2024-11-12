@@ -1,0 +1,55 @@
+@startuml Ticket System
+
+abstract class Ticket {
+  # String passengerName
+  # String destination
+  # double basePrice
+
+  + Ticket(passengerName: String, destination: String, basePrice: double)
+  + {abstract} calculateFare(): double
+  + {abstract} getClassType(): String
+  + {abstract} getBaggageLimit(): int
+  + {abstract} getFacilities(): String[]
+  + getPassengerName(): String
+  + getDestination(): String
+  + getBasePrice(): double
+  + displayTicketDetails(): void
+}
+
+class EconomyTicket {
+  - {static} discount: double = 0.10
+  + EconomyTicket(passengerName: String, destination: String, basePrice: double)
+  + calculateFare(): double
+  + getClassType(): String
+  + getBaggageLimit(): int
+  + getFacilities(): String[]
+}
+
+class BusinessTicket {
+  - {static} discount: double = 0.25
+  + BusinessTicket(passengerName: String, destination: String, basePrice: double)
+  + calculateFare(): double
+  + getClassType(): String
+  + getBaggageLimit(): int
+  + getFacilities(): String[]
+}
+
+class FirstClassTicket {
+  - {static} discount: double = 0.50
+  + FirstClassTicket(passengerName: String, destination: String, basePrice: double)
+  + calculateFare(): double
+  + getClassType(): String
+  + getBaggageLimit(): int
+  + getFacilities(): String[]
+}
+
+class TicketReservationSystem {
+  + {static} main(args: String[]): void
+}
+
+Ticket <|-- EconomyTicket
+Ticket <|-- BusinessTicket
+Ticket <|-- FirstClassTicket
+TicketReservationSystem ..> Ticket
+
+@enduml
