@@ -1,0 +1,62 @@
+@startuml Foxes And Rabbit
+abstract class Animal {
+  - age : int
+  - alive : boolean
+  - field : Field
+  - location : Location
+  + Animal(field : Field, location : Location)
+  + isAlive() : boolean
+  + setDead() : void
+  + getLocation() : Location
+  + getField() : Field
+  + setLocation(newLocation : Location) : void
+  + incrementAge(maxAge : int) : void
+  {abstract} + act(newAnimals : List<Animal>) : void
+}
+
+class Fox extends Animal {
+  + Fox(field : Field, location : Location)
+  + act(newAnimals : List<Animal>) : void
+  - findFood() : Location
+}
+
+class Rabbit extends Animal {
+  + Rabbit(field : Field, location : Location)
+  + act(newAnimals : List<Animal>) : void
+}
+
+class Field {
+  - field : Object[][]
+  + Field(depth : int, width : int)
+  + getDepth() : int
+  + getWidth() : int
+  + clear(location : Location) : void
+  + place(object : Object, location : Location) : void
+  + getObjectAt(location : Location) : Object
+  + freeAdjecentLocation(location : Location) : Location
+  + adjacentLocations(location : Location) : List<Location>
+}
+
+class Location {
+  - row : int
+  - col : int
+  + Location(row : int, col : int)
+  + getRow() : int
+  + getCol() : int
+}
+
+class Simulator {
+  - field : Field
+  - animals : List<Animal>
+  + Simulator(depth : int, width : int)
+  + simulate(steps : int) : void
+  - populate() : void
+  - getRandomFreeLocation() : Location
+}
+
+Animal --> Field
+Animal --> Location
+Field --> Location
+Simulator --> Field
+Simulator --> Animal
+@enduml

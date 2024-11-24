@@ -1,0 +1,63 @@
+@startuml LivingBeing
+abstract class LivingBeing {
+  - name : String
+  + LivingBeing(name : String)
+  + getName() : String
+  + breathe() : void
+  {abstract} + grow() : void
+}
+
+abstract class Animal extends LivingBeing {
+  + Animal(name : String)
+  {abstract} + grow() : void
+  {abstract} + move() : void
+}
+
+class Bird extends Animal {
+  + Bird(name : String)
+  + grow() : void
+  + move() : void
+}
+
+class Dog extends Animal {
+  + Dog(name : String)
+  + grow() : void
+  + move() : void
+}
+
+abstract class Plant extends LivingBeing {
+  + Plant(name : String)
+  {abstract} + grow() : void
+  {abstract} + photosynthesize() : void
+}
+
+class FloweringPlant extends Plant {
+  + FloweringPlant(name : String)
+  + grow() : void
+  + photosynthesize() : void
+}
+
+class NonFloweringPlant extends Plant {
+  + NonFloweringPlant(name : String)
+  + grow() : void
+  + photosynthesize() : void
+}
+
+abstract class Human extends LivingBeing {
+  + Human(name : String)
+  {abstract} + speak() : void
+}
+
+class Programmer extends Human {
+  + Programmer(name : String)
+  + grow() : void
+  + speak() : void
+}
+
+class Doctor extends Human {
+  + Doctor(name : String)
+  + grow() : void
+  + speak() : void
+}
+
+@enduml
