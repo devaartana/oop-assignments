@@ -1,0 +1,73 @@
+@startuml Notepad
+
+class Notepad {
+    - JTextArea jta
+    - JScrollPane scrollPane
+    - JTextArea lineNumbers
+    - ThemeManager themeManager
+    --
+    + Notepad()
+    + createMenuItem(menu: JMenu, text: String, listener: ActionListener): void
+    + main(args: String[]): void
+}
+
+class ThemeHandler {
+    - JTextArea textArea
+    - JTextArea lineNumbers
+    - JScrollPane scrollPane
+    - boolean isDarkMode
+    --
+    + ThemeHandler(JTextArea textArea, JTextArea lineNumbers, JScrollPane scrollPane)
+    + actionPerformed(ActionEvent e)
+    + toggleDarkMode()
+    + isDarkMode() : boolean
+}
+class LineNumberManager {
+    - JTextArea textArea
+    - JTextArea lineNumbers
+    --
+    + LineNumberManager(JTextArea textArea, JTextArea lineNumbers)
+    + updateLineNumbers()
+}
+
+class FileMenuHandler {
+    - JTextArea jta
+    - JFrame parentFrame
+    --
+    + FileMenuHandler(jta: JTextArea, parentFrame: JFrame)
+}
+
+class EditMenuHandler {
+    - JTextArea jta
+    --
+    + EditMenuHandler(jta: JTextArea)
+}
+
+class HelpMenuHandler {
+    - JFrame parentFrame
+    --
+    + HelpMenuHandler(parentFrame: JFrame)
+}
+
+class SearchHandler {
+    - JTextArea textArea
+    - JFrame parentFrame
+    - int lastSearchIndex
+    - String lastSearchTerm
+    - boolean searchForward
+    --
+    + SearchHandler(JTextArea textArea, JFrame parentFrame)
+    + actionPerformed(ActionEvent e)
+    - showSearchDialog()
+    - performSearch(String searchTerm, boolean caseSensitive, boolean forward)
+    - replaceDialog()
+}
+
+Notepad <-- ThemeHandler
+Notepad <-- LineNumberManager
+Notepad <-- FileMenuHandler
+Notepad <-- EditMenuHandler
+Notepad <-- HelpMenuHandler
+Notepad <-- SearchHandler
+
+@enduml
